@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Hello World (Three.js)</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<body>
+
+	<script src="js/threejs/three.js"></script>
+    <script src="js/libs/inflate.min.js"></script>
+    <script src="js/loaders/FBXLoader.js"></script>
+    <script src="js/loaders/OBJLoader.js"></script>
+    <script src="js/loaders/MTLLoader.js"></script>
+    <script src="js/controls/OrbitControls.js"></script>
+    <script src="js/PointerLockControls.js"></script>
+    <script src="js/Detector.js"></script>
+    <script src="js/libs/stats.min.js"></script>
+    <script id="vertexShader" type="x-shader/x-vertex">
+        varying vec2 vUv;
+        void main() 
+        { 
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+        }
+        </script>
+        
+        <!-- fragment shader a.k.a. pixel shader -->
+        <script id="fragmentShader" type="x-shader/x-vertex"> 
+        uniform sampler2D baseTexture;
+        uniform float baseSpeed;
+        uniform sampler2D noiseTexture;
+        uniform float noiseScale;
+        uniform float alpha;
+        uniform float time;
+        
+        varying vec2 vUv;
+        void main() 
+        {
+            vec2 uvTimeShift = vUv + vec2( -0.7, 1.5 ) * time * baseSpeed;	
+            vec4 noiseGeneratorTimeShift = texture2D( noiseTexture, uvTimeShift );
+            vec2 uvNoiseTimeShift = vUv + noiseScale * vec2( noiseGeneratorTimeShift.r, noiseGeneratorTimeShift.b );
+            vec4 baseColor = texture2D( baseTexture, uvNoiseTimeShift );
+        
+            baseColor.a = alpha;
+            gl_FragColor = baseColor;
+        }  
+        </script>
+
+<!-- jQuery code to display an information button and box when clicked. -->
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/jquery-ui.js"></script>
+</div>
+<!-- ------------------------------------------------------------ -->
+
+<div id="ThreeJS" style="z-index: 1; position: absolute; left:0px; top:0px; bottom: 0px; right: 0px;"></div>
+<script src="scene.js"></script>
+
+</body>
+</html>

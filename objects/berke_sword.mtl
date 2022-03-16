@@ -1,0 +1,26 @@
+# Blender MTL File: 'uploads_files_2334582_GladiusSwordCGTrader (1).blend'
+# Material Count: 2
+
+newmtl Blademat
+Ns 537.776103
+Ka 1.000000 1.000000 1.000000
+Kd 0.143625 0.143625 0.143625
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump GladiusSwordNormal.png
+
+newmtl Sword_Bronze_for_bake
+Ns 225.000000
+Ka 0.900000 0.900000 0.900000
+Kd 0.800000 0.800000 0.800000
+Ks 0.404545 0.404545 0.404545
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump -bm 9.999999 GladiusSwordNormal.png
+map_Kd GladiusSwordDiffuse.png
+map_Ns GladiusSwordRoughtness.png
